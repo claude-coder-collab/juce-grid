@@ -108,6 +108,27 @@ inline GridModel makeEditableModel(const std::shared_ptr<EditableTable>& table)
     return model;
 }
 
+/** Runs the message loop until the condition holds or two seconds pass, for window-system
+    effects that arrive asynchronously, such as keyboard focus under an X11 window manager. */
+inline bool waitFor(const std::function<bool()>& condition)
+{
+    for (auto attempt = 0; attempt < 100; ++attempt)
+    {
+        if (condition())
+            return true;
+        juce::MessageManager::getInstance()->runDispatchLoopUntil(20);
+    }
+    return condition();
+}
+
+inline bool focus(juce::Component& component)
+{
+    return waitFor([&component] {
+        component.grabKeyboardFocus();
+        return component.hasKeyboardFocus(false);
+    });
+}
+
 inline juce::KeyPress key(int code, juce::ModifierKeys mods = {})
 {
     return { code, mods, 0 };

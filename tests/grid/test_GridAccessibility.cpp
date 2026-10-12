@@ -169,8 +169,8 @@ TEST_CASE("Accessibility focus follows the cursor to the cell", "[accessibility]
     const auto& table = tableOf(grid);
     table.getNumRows();
 
-    grid.grabKeyboardFocus();
-    REQUIRE(grid.hasKeyboardFocus(false));
+    window.toFront(true);
+    REQUIRE(jgrid::test::focus(grid));
     CHECK(grid.keyPressed(juce::KeyPress(juce::KeyPress::downKey)));
     CHECK(grid.keyPressed(juce::KeyPress(juce::KeyPress::rightKey)));
 
