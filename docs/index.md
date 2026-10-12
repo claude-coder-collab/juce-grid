@@ -23,7 +23,7 @@ grid.setModel(model);
 
 ## What you get
 
-| | |
+| Feature | What it means |
 |---|---|
 | **Your data, your way** | Bind any data with a struct of `std::function`s. No base class, and the Grid is not a template. |
 | **Spreadsheet keyboard** | Arrows, Page Up/Down, Home/End, Tab and Enter, Shift to extend, Cmd/Ctrl+A, Ctrl+Tab to leave. |

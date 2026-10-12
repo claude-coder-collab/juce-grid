@@ -21,7 +21,7 @@
   <text x="340" y="168" font-size="13">compare, reorderRows</text>
   <text x="340" y="190" font-size="13">insertRows, removeRows...</text>
   <text x="340" y="212" font-size="13">undo, redo, batches</text>
-  <text x="340" y="234" font-size="13">colName, rowName, contextMenu</text>
+  <text x="340" y="234" font-size="13">colName, rowName, menus</text>
   <text x="340" y="262" font-size="13" font-style="italic">notifier → your notifier</text>
 
   <rect x="620" y="60" width="220" height="200" rx="10" fill="#eef8ef" stroke="#3d8b4f" stroke-width="2"/>
