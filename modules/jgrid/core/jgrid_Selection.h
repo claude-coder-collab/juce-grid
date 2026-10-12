@@ -10,26 +10,45 @@
 namespace jgrid
 {
 
-/** A rectangle of cells: half-open row and column index ranges. */
+//==============================================================================
+/** A rectangle of cells, as half-open row and column ranges.
+
+    @see Selection
+*/
 struct CellRange
 {
-    IndexRange rows;
-    IndexRange cols;
+    IndexRange rows; /**< The rows [begin, end). */
+    IndexRange cols; /**< The columns [begin, end). */
 
     /** Returns the smallest range containing both cells. */
     [[nodiscard]] static CellRange spanning(Cell a, Cell b);
 
+    /** Returns true if the range has no cells. */
     [[nodiscard]] bool isEmpty() const { return rows.isEmpty() || cols.isEmpty(); }
+    /** Returns true if the cell is in the range. */
     [[nodiscard]] bool contains(Cell cell) const { return rows.contains(cell.row) && cols.contains(cell.col); }
+    /** Returns the number of cells in the range. */
     [[nodiscard]] int getNumCells() const { return rows.size() * cols.size(); }
+    /** Returns the range's top-left cell. */
     [[nodiscard]] Cell getTopLeft() const { return { .row = rows.begin, .col = cols.begin }; }
 
+    /** Compares two ranges. */
     friend bool operator==(const CellRange&, const CellRange&) = default;
 };
 
-/** The selected cells: one or more ranges, the last of which is active. The active range spans
-    from an anchor cell, which stays put, to a far corner, which Shift-movement and dragging move.
-    The cursor itself is held by the Grid. */
+//==============================================================================
+/**
+    The selected cells of a Grid: one or more rectangular ranges, the last of which is active.
+
+    The active range spans from an anchor cell, which stays put, to a far corner, which Shift with
+    a movement key and dragging move. Cmd/Ctrl+click adds a new range. The cursor itself is held by
+    the Grid and is always in or next to the selection.
+
+    Read a Grid's selection with Grid::getSelection(); change it through the Grid (setCursor,
+    extendSelection, selectRows and so on) so it repaints and stays consistent.
+
+    @see Grid::getSelection, CellRange
+*/
 class Selection
 {
 public:
@@ -48,17 +67,24 @@ public:
     /** Selects whole columns first..last (in either order), replacing or adding to the selection. */
     void selectCols(int first, int last, int rowCount, bool add);
 
+    /** Selects every cell of a grid of the given size, or nothing if it is empty. */
     void selectAll(int rowCount, int colCount);
 
+    /** Returns the ranges, the active one last. */
     [[nodiscard]] const std::vector<CellRange>& getRanges() const;
+    /** Returns the active range's anchor, the corner that stays put. */
     [[nodiscard]] std::optional<Cell> getAnchor() const;
+    /** Returns the active range's far corner, the one extending moves. */
     [[nodiscard]] std::optional<Cell> getCorner() const;
+    /** Returns true if any range contains the cell. */
     [[nodiscard]] bool contains(Cell cell) const;
+    /** Returns true if nothing is selected. */
     [[nodiscard]] bool isEmpty() const;
 
     /** True when the selection is at most a single cell. */
     [[nodiscard]] bool isSingleCell() const;
 
+    /** Returns the number of selected cells, counting overlaps between ranges more than once. */
     [[nodiscard]] int getNumCells() const;
 
     /** True if every cell of the row lies in one range. */
@@ -67,7 +93,9 @@ public:
     /** True if every cell of the column lies in one range. */
     [[nodiscard]] bool isWholeColumnSelected(int col, int rowCount) const;
 
+    /** Returns true if any selected cell is in the row. */
     [[nodiscard]] bool intersectsRow(int row) const;
+    /** Returns true if any selected cell is in the column. */
     [[nodiscard]] bool intersectsCol(int col) const;
 
     /** Returns the cell after (or before) the given one when cycling through every selected cell:

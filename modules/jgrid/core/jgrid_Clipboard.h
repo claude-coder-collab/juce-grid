@@ -11,7 +11,12 @@
 namespace jgrid
 {
 
-/** Rows of cell texts, as exchanged through the clipboard. */
+//==============================================================================
+/** Rows of cell texts, as exchanged through the clipboard.
+
+    The functions below are the building blocks of the Grid's copy and paste. The Grid calls them
+    for you; they are public so models and tests can use the same clipboard format.
+*/
 using TextTable = std::vector<std::vector<juce::String>>;
 
 /** Encodes rows as tab-separated text, one line per row. Values containing a tab, newline,
@@ -22,12 +27,13 @@ using TextTable = std::vector<std::vector<juce::String>>;
     A single trailing line end is ignored. Empty text decodes to no rows. */
 [[nodiscard]] TextTable decodeTsv(const juce::String& text);
 
-/** One value to store in one cell. */
+/** One value to store in one cell, as planned by planPaste(). */
 struct CellWrite
 {
-    Cell cell;
-    juce::String text;
+    Cell cell; /**< The cell to write. */
+    juce::String text; /**< The text to store there. */
 
+    /** Compares two writes. */
     friend bool operator==(const CellWrite&, const CellWrite&) = default;
 };
 

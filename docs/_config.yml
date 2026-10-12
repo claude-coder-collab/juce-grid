@@ -1,0 +1,19 @@
+title: JUCE Grid
+description: A spreadsheet-style, accessible grid component for JUCE 8
+remote_theme: just-the-docs/just-the-docs@v0.10.1
+plugins:
+  - jekyll-remote-theme
+url: https://claude-coder-collab.github.io
+baseurl: /juce-grid
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+aux_links:
+  "API reference": "/juce-grid/api/"
+  "GitHub": "https://github.com/claude-coder-collab/juce-grid"
+aux_links_new_tab: false
+footer_content: "JUCE Grid is MIT licensed. Applications built with it also use JUCE, which is licensed under the AGPLv3 or a commercial JUCE licence."
+exclude:
+  - Doxyfile
+  - examples/CMakeLists.txt
+  - examples/Main.cpp

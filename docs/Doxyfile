@@ -1,0 +1,32 @@
+PROJECT_NAME           = "JUCE Grid"
+PROJECT_BRIEF          = "A spreadsheet-style, accessible grid component for JUCE 8"
+OUTPUT_DIRECTORY       = build/api
+INPUT                  = modules/jgrid
+FILE_PATTERNS          = *.h
+RECURSIVE              = YES
+EXCLUDE                = modules/jgrid/grid/jgrid_GridInternals.h
+EXCLUDE_SYMBOLS        = juce
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+HIDE_UNDOC_MEMBERS     = NO
+INTERNAL_DOCS          = NO
+JAVADOC_AUTOBRIEF      = YES
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = NO
+WARN_LOGFILE           = build/doxygen-warnings.txt
+ALIASES                = "tags{1}="
+GENERATE_HTML          = YES
+HTML_OUTPUT            = .
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+SORT_MEMBER_DOCS       = NO
+SHOW_FILES             = NO
+SHOW_NAMESPACES        = YES
+SOURCE_BROWSER         = NO
+INLINE_SOURCES         = NO
+SEARCHENGINE           = YES
+MACRO_EXPANSION        = YES
+PREDEFINED             = JUCE_LEAK_DETECTOR(x)=

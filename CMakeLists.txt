@@ -19,6 +19,7 @@ set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 option(JGRID_BUILD_TESTS "Build unit tests" ON)
 option(JGRID_BUILD_DEMO "Build the demo app" ON)
+option(JGRID_BUILD_EXAMPLES "Build the documentation examples" OFF)
 option(JGRID_BUILD_MODULE_CHECK "Build a program that uses the Grid through juce_add_module" OFF)
 option(JGRID_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 option(JGRID_CLANG_TIDY "Run clang-tidy while compiling" OFF)
@@ -62,8 +63,12 @@ if(JGRID_BUILD_DEMO)
     add_subdirectory(demo)
 endif()
 
-if(JGRID_BUILD_TESTS OR JGRID_BUILD_MODULE_CHECK)
+if(JGRID_BUILD_TESTS OR JGRID_BUILD_MODULE_CHECK OR JGRID_BUILD_EXAMPLES)
     enable_testing()
+endif()
+
+if(JGRID_BUILD_EXAMPLES)
+    add_subdirectory(docs/examples)
 endif()
 
 if(JGRID_BUILD_MODULE_CHECK)

@@ -7,16 +7,23 @@
 namespace jgrid
 {
 
-/** A cell position, as row and column indices. */
+//==============================================================================
+/** A cell position: a row and a column index in the model's view order.
+
+    @see Grid::getCursor, Grid::setCursor
+*/
 struct Cell
 {
-    int row = 0;
-    int col = 0;
+    int row = 0; /**< The row index. */
+    int col = 0; /**< The column index. */
 
+    /** Compares two cells. */
     friend bool operator==(const Cell&, const Cell&) = default;
 };
 
-/** A cursor movement requested from the keyboard. */
+//==============================================================================
+/** A cursor movement requested from the keyboard. These functions are the building blocks of the
+    Grid's keyboard handling; you only need them to drive a Grid's cursor yourself. */
 enum class Move {
     up,
     down,

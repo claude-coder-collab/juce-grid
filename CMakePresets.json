@@ -19,7 +19,10 @@
         {
             "name": "dev",
             "displayName": "Development",
-            "inherits": "base"
+            "inherits": "base",
+            "cacheVariables": {
+                "JGRID_BUILD_EXAMPLES": "ON"
+            }
         },
         {
             "name": "asan",
@@ -45,7 +48,8 @@
             "inherits": "base",
             "cacheVariables": {
                 "JGRID_CLANG_TIDY": "ON",
-                "JGRID_WARNINGS_AS_ERRORS": "ON"
+                "JGRID_WARNINGS_AS_ERRORS": "ON",
+                "JGRID_BUILD_EXAMPLES": "ON"
             }
         },
         {
@@ -54,7 +58,8 @@
             "inherits": "base",
             "cacheVariables": {
                 "JGRID_WARNINGS_AS_ERRORS": "ON",
-                "JGRID_BUILD_MODULE_CHECK": "ON"
+                "JGRID_BUILD_MODULE_CHECK": "ON",
+                "JGRID_BUILD_EXAMPLES": "ON"
             }
         }
     ],

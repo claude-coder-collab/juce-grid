@@ -6,17 +6,20 @@
 namespace jgrid
 {
 
-/** The result of trying to store an edited value. */
+//==============================================================================
+/** The result of trying to store an edited value with commitValue(). These helpers are building
+    blocks of the Grid's editing; you rarely need them directly. */
 struct CommitOutcome
 {
+    /** What happened. */
     enum class Kind {
-        committed,
-        invalid,
-        rejected
+        committed, /**< validate accepted the value and setValue stored it. */
+        invalid, /**< validate rejected the value. */
+        rejected /**< setValue returned false, or the model has no setValue. */
     };
 
-    Kind kind = Kind::committed;
-    juce::String message;
+    Kind kind = Kind::committed; /**< What happened. */
+    juce::String message; /**< The message to show for invalid or rejected values. */
 };
 
 /** The message shown when setValue fails. */

@@ -383,6 +383,12 @@ This section records how the spec is built, so another agent can continue the wo
 - A change in the number of visible rows or columns (refresh, hiding or showing) posts a structure-changed event on the table.
 - A component needs a native window before it has an accessibility handler, so tests put the Grid on the desktop with `addToDesktop(0)`.
 
+### Documentation
+- The public headers carry JUCE-style Doxygen comments: a class overview with an example, `//====` section separators, `@param`, `@returns`, `@see` and `@tags{GUI}`, and `@internal` on Component and TextInputTarget overrides. `docs/Doxyfile` builds the API reference from `modules/jgrid` (excluding `GridInternals.h`); undocumented public members appear in `build/doxygen-warnings.txt` (the `@internal` overrides are expected there).
+- `docs/` is a Jekyll site with the just-the-docs remote theme: a guide in Markdown (getting started, how the pieces fit with a responsibilities table, the model reference, editing, sorting, rows/undo/batches, several views, selection and clipboard, layout and appearance, keyboard, accessibility) plus the Doxygen output under `/api/`. `.github/workflows/docs.yml` builds both on pull requests touching `docs/` or `modules/` and deploys to GitHub Pages from main (https://claude-coder-collab.github.io/juce-grid/).
+- `docs/examples/` holds the guide's code examples as complete files, pulled into pages with `include_relative`. They are built (option `JGRID_BUILD_EXAMPLES`, on in the dev, tidy and ci presets) and run as the `examples` test, so the guide's code always compiles.
+- `docs/images/` holds diagrams (hand-written SVG) and screenshots rendered by the demo: `"JUCE Grid Demo" --snapshot <file.png> <scenario>`, where the scenario is overview, editing, selection, views, layout or contrast, at 1.5× scale.
+
 ### Manual testing
 - Build the demo with `cmake --build --preset dev-release --target jgrid_demo`. On macOS the linker's ad-hoc signature does not cover the bundle resources, so re-sign the app with `codesign --force --deep -s - "<app>"` before copying it to another Mac.
 - VoiceOver checklist for the demo:

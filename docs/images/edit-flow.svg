@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#444"/>
+    </marker>
+  </defs>
+  <rect width="860" height="470" fill="#ffffff"/>
+  <g font-weight="bold" font-size="15" text-anchor="middle">
+    <rect x="60" y="15" width="140" height="36" rx="6" fill="#f2f2f2" stroke="#666"/><text x="130" y="38">User</text>
+    <rect x="360" y="15" width="140" height="36" rx="6" fill="#eef8ef" stroke="#3d8b4f"/><text x="430" y="38">Grid</text>
+    <rect x="660" y="15" width="140" height="36" rx="6" fill="#fdf6e8" stroke="#c08a24"/><text x="730" y="38">Model</text>
+  </g>
+  <g stroke="#bbb" stroke-dasharray="4 4">
+    <line x1="130" y1="51" x2="130" y2="460"/><line x1="430" y1="51" x2="430" y2="460"/><line x1="730" y1="51" x2="730" y2="460"/>
+  </g>
+  <g stroke="#444" stroke-width="1.6" marker-end="url(#a)">
+    <line x1="130" y1="85" x2="426" y2="85"/>
+    <line x1="430" y1="125" x2="726" y2="125"/>
+    <line x1="730" y1="160" x2="434" y2="160"/>
+    <line x1="130" y1="240" x2="426" y2="240"/>
+    <line x1="430" y1="275" x2="726" y2="275"/>
+    <line x1="730" y1="305" x2="434" y2="305"/>
+    <line x1="430" y1="340" x2="726" y2="340"/>
+    <line x1="730" y1="375" x2="434" y2="375"/>
+  </g>
+  <text x="140" y="78">types "abc" in Track, presses Enter</text>
+  <text x="440" y="118">validate(row, col, "abc")</text>
+  <text x="440" y="153">Result::fail("Track must be a whole number")</text>
+  <rect x="440" y="172" width="380" height="44" rx="6" fill="#fff4f4" stroke="#c44"/>
+  <text x="450" y="190">editor stays open and shakes; popup shows the message;</text>
+  <text x="450" y="207">screen readers hear it. Nothing is stored.</text>
+  <text x="140" y="233">fixes it to "12", presses Enter</text>
+  <text x="440" y="268">validate(row, col, "12")</text>
+  <text x="440" y="298">Result::ok()</text>
+  <text x="440" y="333">setValue(row, col, "12") → stores 12 as an int → true</text>
+  <text x="440" y="368">notifier.changed(CellsChanged{ row, 1, col, 1 })</text>
+  <rect x="440" y="390" width="380" height="60" rx="6" fill="#eef8ef" stroke="#3d8b4f"/>
+  <text x="450" y="410">editor closes; every Grid on this notifier repaints the</text>
+  <text x="450" y="427">cell; the cursor moves down (Enter) or right (Tab).</text>
+  <text x="450" y="444" fill="#555">Escape at any point cancels without calling the model.</text>
+</svg>

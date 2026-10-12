@@ -5,6 +5,7 @@
 namespace jgrid
 {
 
+//==============================================================================
 /** Returns the spreadsheet-style letters for a zero-based column index: A, B, ... Z, AA, AB, ... */
 [[nodiscard]] juce::String columnLetters(int col);
 
