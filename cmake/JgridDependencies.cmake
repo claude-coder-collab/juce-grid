@@ -16,7 +16,8 @@ target_link_libraries(jgrid_juce
         juce::juce_recommended_config_flags)
 target_compile_definitions(jgrid_juce PUBLIC
     JUCE_WEB_BROWSER=0
-    JUCE_USE_CURL=0)
+    JUCE_USE_CURL=0
+    JUCE_MODAL_LOOPS_PERMITTED=1)
 target_include_directories(jgrid_juce SYSTEM INTERFACE
     $<TARGET_PROPERTY:jgrid_juce,INCLUDE_DIRECTORIES>)
 target_compile_definitions(jgrid_juce INTERFACE

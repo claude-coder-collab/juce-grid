@@ -225,20 +225,20 @@ TEST_CASE("Tab past the last cell and Ctrl+Tab move focus out of the grid", "[gr
     after.setBounds(0, 380, 10, 10);
     parent.addToDesktop(0);
     parent.setVisible(true);
+    parent.toFront(true);
 
-    grid.grabKeyboardFocus();
-    REQUIRE(grid.hasKeyboardFocus(false));
+    REQUIRE(jgrid::test::focus(grid));
     CHECK(grid.keyPressed(key(juce::KeyPress::tabKey, juce::ModifierKeys::ctrlModifier)));
-    CHECK(after.hasKeyboardFocus(false));
+    CHECK(jgrid::test::waitFor([&] { return after.hasKeyboardFocus(false); }));
     CHECK(grid.getCursor() == Cell{});
 
-    grid.grabKeyboardFocus();
+    REQUIRE(jgrid::test::focus(grid));
     CHECK(grid.keyPressed(key(juce::KeyPress::tabKey, juce::ModifierKeys::shiftModifier)));
-    CHECK(before.hasKeyboardFocus(false));
+    CHECK(jgrid::test::waitFor([&] { return before.hasKeyboardFocus(false); }));
 
     grid.setCursor({ .row = 1, .col = 1 });
-    grid.grabKeyboardFocus();
+    REQUIRE(jgrid::test::focus(grid));
     CHECK(grid.keyPressed(key(juce::KeyPress::tabKey)));
-    CHECK(after.hasKeyboardFocus(false));
+    CHECK(jgrid::test::waitFor([&] { return after.hasKeyboardFocus(false); }));
     CHECK(grid.getCursor() == Cell{ .row = 1, .col = 1 });
 }

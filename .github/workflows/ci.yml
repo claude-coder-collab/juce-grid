@@ -26,7 +26,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y ninja-build gcc-14 g++-14 xvfb \
+          sudo apt-get install -y ninja-build gcc-14 g++-14 xvfb openbox \
             libfreetype-dev libfontconfig1-dev libx11-dev libxcomposite-dev libxcursor-dev \
             libxext-dev libxinerama-dev libxrandr-dev libxrender-dev
           echo "CC=gcc-14" >> "$GITHUB_ENV"
@@ -48,7 +48,7 @@ jobs:
 
       - name: Test (Linux, virtual display)
         if: runner.os == 'Linux'
-        run: xvfb-run -a ctest --preset ci
+        run: xvfb-run -a bash -c 'openbox & sleep 2; ctest --preset ci'
 
       - name: Test
         if: runner.os != 'Linux'
