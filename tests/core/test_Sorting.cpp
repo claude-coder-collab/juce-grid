@@ -2,28 +2,30 @@
 
 #include <catch2/catch_test_macros.hpp>
 
+#include <compare>
+
 using jgrid::compareValues;
 
 TEST_CASE("Numbers compare numerically", "[sorting]")
 {
-    CHECK(compareValues(9, 10) < 0);
-    CHECK(compareValues(2.5, 2) > 0);
-    CHECK(compareValues(juce::var(static_cast<juce::int64>(5)), 5.0) == 0);
+    CHECK(std::is_lt(compareValues(9, 10)));
+    CHECK(std::is_gt(compareValues(2.5, 2)));
+    CHECK(std::is_eq(compareValues(juce::var(static_cast<juce::int64>(5)), 5.0)));
 }
 
 TEST_CASE("Text compares naturally and ignores case", "[sorting]")
 {
-    CHECK(compareValues("item 9", "item 10") < 0);
-    CHECK(compareValues("apple", "Banana") < 0);
-    CHECK(compareValues("ABC", "abc") == 0);
-    CHECK(compareValues("10", 9) > 0);
+    CHECK(std::is_lt(compareValues("item 9", "item 10")));
+    CHECK(std::is_lt(compareValues("apple", "Banana")));
+    CHECK(std::is_eq(compareValues("ABC", "abc")));
+    CHECK(std::is_gt(compareValues("10", 9)));
 }
 
 TEST_CASE("Void values sort first", "[sorting]")
 {
-    CHECK(compareValues({}, 0) < 0);
-    CHECK(compareValues("", juce::var()) > 0);
-    CHECK(compareValues({}, {}) == 0);
+    CHECK(std::is_lt(compareValues({}, 0)));
+    CHECK(std::is_gt(compareValues("", juce::var())));
+    CHECK(std::is_eq(compareValues({}, {})));
 }
 
 TEST_CASE("Sorting is stable in both directions", "[sorting]")
