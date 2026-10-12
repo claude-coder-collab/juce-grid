@@ -106,23 +106,23 @@ private:
     class Handler final : public juce::AccessibilityHandler
     {
     public:
-        explicit Handler(CellComponent& component) : juce::AccessibilityHandler(component,
-                                                         juce::AccessibilityRole::cell,
-                                                         juce::AccessibilityActions()
-                                                             .addAction(juce::AccessibilityActionType::focus, [&component] { component.grid.setCursor(component.cell); })
-                                                             .addAction(juce::AccessibilityActionType::showMenu,
-                                                                 [&component] {
-                                                                     if (!component.grid.selection.contains(component.cell))
-                                                                         component.grid.setCursor(component.cell);
-                                                                     component.grid.showContextMenuForKeyboard();
-                                                                 })
-                                                             .addAction(juce::AccessibilityActionType::press,
-                                                                 [&component] {
-                                                                     component.grid.setCursor(component.cell);
-                                                                     component.grid.startEditing();
-                                                                 }),
-                                                         Interfaces{ std::make_unique<GridCellInterface>(component.grid) }),
-                                                     owner(component)
+        explicit Handler(CellComponent& componentIn) : juce::AccessibilityHandler(componentIn,
+                                                           juce::AccessibilityRole::cell,
+                                                           juce::AccessibilityActions()
+                                                               .addAction(juce::AccessibilityActionType::focus, [&componentIn] { componentIn.grid.setCursor(componentIn.cell); })
+                                                               .addAction(juce::AccessibilityActionType::showMenu,
+                                                                   [&componentIn] {
+                                                                       if (!componentIn.grid.selection.contains(componentIn.cell))
+                                                                           componentIn.grid.setCursor(componentIn.cell);
+                                                                       componentIn.grid.showContextMenuForKeyboard();
+                                                                   })
+                                                               .addAction(juce::AccessibilityActionType::press,
+                                                                   [&componentIn] {
+                                                                       componentIn.grid.setCursor(componentIn.cell);
+                                                                       componentIn.grid.startEditing();
+                                                                   }),
+                                                           Interfaces{ std::make_unique<GridCellInterface>(componentIn.grid) }),
+                                                       owner(componentIn)
         {
         }
 
@@ -188,11 +188,11 @@ private:
     class Handler final : public juce::AccessibilityHandler
     {
     public:
-        explicit Handler(RowComponent& component) : juce::AccessibilityHandler(component,
-                                                        juce::AccessibilityRole::row,
-                                                        juce::AccessibilityActions(),
-                                                        Interfaces{ std::make_unique<GridCellInterface>(component.grid) }),
-                                                    owner(component)
+        explicit Handler(RowComponent& componentIn) : juce::AccessibilityHandler(componentIn,
+                                                          juce::AccessibilityRole::row,
+                                                          juce::AccessibilityActions(),
+                                                          Interfaces{ std::make_unique<GridCellInterface>(componentIn.grid) }),
+                                                      owner(componentIn)
         {
         }
 
@@ -235,17 +235,17 @@ private:
     class Handler final : public juce::AccessibilityHandler
     {
     public:
-        explicit Handler(HeaderCellComponent& component) : juce::AccessibilityHandler(component,
-                                                               juce::AccessibilityRole::tableHeader,
-                                                               juce::AccessibilityActions()
-                                                                   .addAction(juce::AccessibilityActionType::press, [&component] { component.grid.toggleSort(component.col); })
-                                                                   .addAction(juce::AccessibilityActionType::showMenu,
-                                                                       [&component] {
-                                                                           if (!component.grid.selection.isWholeColumnSelected(component.col, component.grid.rows.getCount()))
-                                                                               component.grid.selectColumns(component.col, component.col);
-                                                                           component.grid.showContextMenuForKeyboard();
-                                                                       })),
-                                                           owner(component)
+        explicit Handler(HeaderCellComponent& componentIn) : juce::AccessibilityHandler(componentIn,
+                                                                 juce::AccessibilityRole::tableHeader,
+                                                                 juce::AccessibilityActions()
+                                                                     .addAction(juce::AccessibilityActionType::press, [&componentIn] { componentIn.grid.toggleSort(componentIn.col); })
+                                                                     .addAction(juce::AccessibilityActionType::showMenu,
+                                                                         [&componentIn] {
+                                                                             if (!componentIn.grid.selection.isWholeColumnSelected(componentIn.col, componentIn.grid.rows.getCount()))
+                                                                                 componentIn.grid.selectColumns(componentIn.col, componentIn.col);
+                                                                             componentIn.grid.showContextMenuForKeyboard();
+                                                                         })),
+                                                             owner(componentIn)
         {
         }
 
