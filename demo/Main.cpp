@@ -81,16 +81,44 @@ public:
         grid.setBounds(area);
     }
 
-    void pressKey(const juce::KeyPress& key) { grid.keyPressed(key); }
-
-    void showFeatures()
+    void showScenario(const juce::String& name)
     {
-        secondView.setToggleState(true, juce::sendNotificationSync);
-        grid.sortByColumn(3, true);
-        grid.setCursor({ .row = 1, .col = 1 });
-        grid.extendSelection({ .row = 3, .col = 2 });
-        grid.cut();
-        secondGrid.selectColumns(1, 1);
+        if (name == "editing")
+        {
+            grid.setCursor({ .row = 2, .col = 3 });
+            grid.startEditingWithText("abc");
+            grid.commitEdit();
+        }
+        else if (name == "selection")
+        {
+            grid.setCursor({ .row = 1, .col = 1 });
+            grid.extendSelection({ .row = 4, .col = 2 });
+            grid.cut();
+        }
+        else if (name == "views")
+        {
+            secondView.setToggleState(true, juce::sendNotificationSync);
+            grid.sortByColumn(3, true);
+            secondGrid.sortByColumn(0, false);
+            secondGrid.selectColumns(1, 1);
+        }
+        else if (name == "layout")
+        {
+            grid.setColumnsHidden({ 5 }, true);
+            grid.setColumnWidth(7, 180);
+            grid.setRowHeight(2, 40);
+            grid.selectRows(2, 3);
+        }
+        else if (name == "contrast")
+        {
+            scheme.setSelectedId(2, juce::sendNotificationSync);
+            grid.setCursor({ .row = 2, .col = 1 });
+            grid.extendSelection({ .row = 4, .col = 3 });
+        }
+        else
+        {
+            grid.setCursor({ .row = 2, .col = 1 });
+        }
     }
 
     void visibilityChanged() override
@@ -112,14 +140,12 @@ private:
     juce::Label status;
 };
 
-void writeSnapshot(const juce::File& file)
+void writeSnapshot(const juce::File& file, const juce::String& scenario)
 {
     MainComponent component;
     component.setSize(900, 600);
-    for (const auto code : { juce::KeyPress::downKey, juce::KeyPress::downKey, juce::KeyPress::rightKey, juce::KeyPress::rightKey })
-        component.pressKey(juce::KeyPress(code));
-    component.showFeatures();
-    const auto image = component.createComponentSnapshot(component.getLocalBounds(), true, 2.0f);
+    component.showScenario(scenario);
+    const auto image = component.createComponentSnapshot(component.getLocalBounds(), true, 1.5f);
     file.deleteFile();
     juce::FileOutputStream stream(file);
     juce::PNGImageFormat().writeImageToStream(image, stream);
@@ -152,7 +178,7 @@ public:
         const auto args = juce::StringArray::fromTokens(commandLine, true);
         if (const auto index = args.indexOf("--snapshot"); index >= 0 && index + 1 < args.size())
         {
-            writeSnapshot(juce::File(args[index + 1].unquoted()));
+            writeSnapshot(juce::File(args[index + 1].unquoted()), index + 2 < args.size() ? args[index + 2] : juce::String());
             quit();
             return;
         }

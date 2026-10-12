@@ -1,5 +1,7 @@
 # JUCE Grid
 
+**[Guide and API reference](https://claude-coder-collab.github.io/juce-grid/)**
+
 A spreadsheet-style grid component for [JUCE 8](https://juce.com), inspired by wxPython's Grid: a keyboard-first, accessible replacement for `TableListBox` that you bind to your own data through a small set of callbacks.
 
 ## Features
@@ -46,7 +48,7 @@ jgrid::Grid grid;
 grid.setModel(model);
 ```
 
-Everything else (validation, sorting, row operations, undo, menus) is optional; see `SPEC.md` for the full design and `demo/` for a complete example.
+Everything else (validation, sorting, row operations, undo, menus) is optional. The [guide](https://claude-coder-collab.github.io/juce-grid/) explains each part, `docs/examples/` has small complete examples, and `demo/` is a full application. `SPEC.md` is the design specification.
 
 ## Building the demo and tests
 

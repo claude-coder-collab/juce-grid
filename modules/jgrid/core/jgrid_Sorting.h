@@ -9,7 +9,8 @@
 namespace jgrid
 {
 
-/** The Grid's default comparison of two cell values: void values first, numbers numerically
+//==============================================================================
+/** The Grid's default comparison of two cell values, used when a model has no compare callback: void values first, numbers numerically
     when both are numeric, otherwise natural, case-insensitive order of their text ("9" before "10"). */
 [[nodiscard]] std::weak_ordering compareValues(const juce::var& a, const juce::var& b);
 
