@@ -6,7 +6,7 @@ nav_order: 1
 
 # JUCE Grid
 
-A spreadsheet-style, keyboard-first and accessible grid component for [JUCE 8](https://juce.com), inspired by wxPython's Grid. It replaces `TableListBox` when you need cells you can navigate, select, edit, copy, paste and sort.
+A spreadsheet-style, keyboard-first and accessible grid component for [JUCE 8](https://juce.com). It replaces `TableListBox` when you need cells you can navigate, select, edit, copy, paste and sort.
 
 ![The demo app: a session track list in a Grid, with the cursor on a cell]({{ "/images/overview.png" | relative_url }})
 
