@@ -2,7 +2,7 @@
 
 **[Guide and API reference](https://claude-coder-collab.github.io/juce-grid/)**
 
-A spreadsheet-style grid component for [JUCE 8](https://juce.com), inspired by wxPython's Grid: a keyboard-first, accessible replacement for `TableListBox` that you bind to your own data through a small set of callbacks.
+A spreadsheet-style grid component for [JUCE 8](https://juce.com): a keyboard-first, accessible replacement for `TableListBox` that you bind to your own data through a small set of callbacks.
 
 ## Features
 
