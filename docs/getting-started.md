@@ -17,7 +17,7 @@ nav_order: 2
 
 ## Add the module
 
-JUCE Grid is a JUCE module in `modules/jgrid`. In a CMake project that already uses JUCE, add it with `juce_add_module` and link it:
+JUCE Grid is a JUCE module in `modules/jgrid`. Add it with `juce_add_module` and link it:
 
 ```cmake
 juce_add_module(path/to/juce-grid/modules/jgrid)
@@ -28,9 +28,9 @@ target_link_libraries(MyApp
         juce::juce_gui_basics)
 ```
 
-The module follows JUCE's module format, so the Projucer should also accept `modules/jgrid` as a module; only the CMake route is tested.
+Only the CMake route is tested; the Projucer should also accept `modules/jgrid`.
 
-Then include the module header wherever you use the Grid:
+Include the header:
 
 ```cpp
 #include <jgrid/jgrid.h>
@@ -38,31 +38,31 @@ Then include the module header wherever you use the Grid:
 
 ## Your first Grid
 
-A Grid needs three callbacks: how many rows, how many columns, and the value of a cell. This component shows a read-only list of tracks; `colName` gives the columns proper headers.
+A Grid needs `rowCount`, `colCount` and `getValue`. `colName` is optional and sets the header titles.
 
 ```cpp
 {% include_relative examples/01_ReadOnly.cpp %}
 ```
 
-The Grid is an ordinary `juce::Component`: add it, give it bounds, and it draws and handles input itself. Click a cell or Tab into the Grid, and the arrow keys move the cursor.
+The Grid is a `juce::Component`. Add it and set its bounds.
 
 {: .note }
-Everything a callback captures (here, `tracks`) must live at least as long as the Grid, or you must unbind first with `grid.setModel({})`. Declaring the data before the Grid in the same class, as above, gets the order right.
+Anything a callback captures (here, `tracks`) must outlive the Grid, or call `grid.setModel({})` first. Declare the data before the Grid in the same class.
 
 ## Making it editable
 
-Add `setValue`, and the cells become editable: F2, double-click or typing opens an editor, and Enter or Tab stores the text. Add a `GridModelNotifier` so the Grid hears about the change.
+Add `setValue` to make cells editable. Add a `GridModelNotifier` so the Grid hears about changes.
 
 ```cpp
 {% include_relative examples/02_Editable.cpp %}
 ```
 
-Text editing always hands your model a string. Converting it (here to a `double`) and rejecting bad input (`validate`) are the model's job; the Grid shows the message and keeps the editor open.
+`setValue` always receives a string. Convert it (here to a `double`) in the model. `validate` rejects bad input; the Grid shows the message and keeps the editor open.
 
 ![An edit rejected by validation: the editor stays open and a popup shows the model's message]({{ "/images/editing.png" | relative_url }})
 
 ## Next
 
-- [How the pieces fit]({{ "/concepts" | relative_url }}) explains who is responsible for what.
-- [The model]({{ "/model" | relative_url }}) lists every callback.
-- The repository's `demo/` folder is a complete application with editing, sorting, two views, row operations and undo.
+- [How the pieces fit]({{ "/concepts" | relative_url }})
+- [The model]({{ "/model" | relative_url }})
+- `demo/` in the repository: a complete application with editing, sorting, two views, row operations and undo.

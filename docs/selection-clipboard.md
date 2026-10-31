@@ -11,7 +11,7 @@ nav_order: 9
 
 ## Cursor and selection
 
-The Grid follows Excel: one **cursor** cell (the heavy outline) that the keyboard acts on, and a **selection** of one or more rectangular ranges.
+As in Excel, there is one **cursor** cell (heavy outline) that the keyboard acts on, and a **selection** of one or more rectangular ranges.
 
 ![A range selection marked as cut, with the dashed cut outline]({{ "/images/selection.png" | relative_url }})
 
@@ -28,12 +28,12 @@ From code: `getCursor()`, `setCursor()`, `getSelection()`, `extendSelection()`, 
 
 ## Copy, cut, paste and delete
 
-The clipboard format is tab-separated text with Excel-style quoting, so you can copy between the Grid and Excel, Numbers or Google Sheets.
+The clipboard format is tab-separated text with Excel-style quoting.
 
 - **Copy** (Cmd/Ctrl+C) takes the active range. Hidden rows and columns are skipped.
 - **Paste** (Cmd/Ctrl+V) writes from the cursor, clipped at the last row and column. A single value pasted into a multi-cell selection fills all of it. Read-only and hidden cells are skipped.
 - **Every target is validated before anything is written.** If any cell fails, nothing changes; the cursor moves to the first failing cell and the popup shows the model's message ("…, and 3 more" if several fail).
-- **Cut** (Cmd/Ctrl+X) clears its cells only when they are pasted, so a cut that is never pasted loses nothing. The cut turns into a plain copy if its cells change or the clipboard changes; Escape forgets it.
+- **Cut** (Cmd/Ctrl+X) clears its cells only when pasted. It becomes a plain copy if its cells or the clipboard change; Escape forgets it.
 - **Delete** or Backspace clears the selected editable cells, validating first.
 
-Every paste or delete is one `beginBatch`/`endBatch` pair, so the model can make it one undo step.
+Each paste or delete is one `beginBatch`/`endBatch` pair.

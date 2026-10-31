@@ -30,7 +30,7 @@ Read-only cells (no `setValue`, or `isEditable` returns `false`) don't open; scr
 | Escape | Cancel; nothing is stored. |
 | Cmd/Ctrl+Z, Shift+Cmd/Ctrl+Z | Undo and redo **inside the editor**. The editor's history ends when it closes. |
 
-Clicking another cell commits first. Clicking outside the Grid leaves the editor open with its text, so nothing typed is lost.
+Clicking another cell commits. Clicking outside the Grid leaves the editor open.
 
 ## The commit flow
 
@@ -51,7 +51,7 @@ model.setValue = [this](int row, int col, const juce::var& value) {
 };
 ```
 
-Paste and Delete go through the same `validate` and `setValue`, so one set of rules covers every way a cell can change.
+Paste and Delete use the same `validate` and `setValue`.
 
 ## Driving the editor from code
 
