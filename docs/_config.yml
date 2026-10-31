@@ -15,5 +15,6 @@ aux_links_new_tab: false
 footer_content: "JUCE Grid is MIT licensed. Applications built with it also use JUCE, which is licensed under the AGPLv3 or a commercial JUCE licence."
 exclude:
   - Doxyfile
+  - api-theme
   - examples/CMakeLists.txt
   - examples/Main.cpp

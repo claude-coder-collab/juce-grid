@@ -35,3 +35,8 @@ CLASS_GRAPH            = NO
 COLLABORATION_GRAPH    = NO
 INCLUDE_GRAPH          = NO
 INCLUDED_BY_GRAPH      = NO
+
+HTML_COLORSTYLE        = LIGHT
+HTML_EXTRA_STYLESHEET  = docs/api-theme/doxygen-awesome.css \
+                         docs/api-theme/doxygen-awesome-sidebar-only.css
+FULL_SIDEBAR           = NO
