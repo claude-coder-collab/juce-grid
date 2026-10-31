@@ -6,11 +6,11 @@ nav_order: 1
 
 # JUCE Grid
 
-Keyboard-first, accessible grid component for [JUCE 8](https://juce.com), replacing `TableListBox`. Cells can be navigated, selected, edited, copied, pasted and sorted.
+Grid component for [JUCE 8](https://juce.com). Cells can be navigated, selected, edited, copied, pasted and sorted.
 
 ![The demo app: a session track list in a Grid, with the cursor on a cell]({{ "/images/overview.png" | relative_url }})
 
-Your data stays where it is. The Grid reads and writes it through the callbacks of a `GridModel`, and you notify it when the data changes.
+The Grid presents the data of a `GridModel` with a set of callbacks. The GridModel notifies the Grid when the data changes.
 
 ```cpp
 jgrid::GridModel model;
@@ -24,7 +24,7 @@ grid.setModel(model);
 ## Contents
 
 1. [Getting started]({{ "/getting-started" | relative_url }}): add the module, show a Grid.
-2. [How the pieces fit]({{ "/concepts" | relative_url }}): who does what.
+2. [Responsibilities]({{ "/concepts" | relative_url }}): who does what.
 3. [The model]({{ "/model" | relative_url }}): every callback and notification.
-4. Topic pages: editing, sorting, rows, several views, selection, layout, keyboard, accessibility.
+4. Features: editing, sorting, rows, several views, selection, layout, keyboard, accessibility.
 5. [API reference]({{ "/api/" | relative_url }}), generated from the headers.

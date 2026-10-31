@@ -4,18 +4,14 @@ nav_order: 6
 ---
 
 # Sorting
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 ## For the user
 
 Click a header's sort button for ascending, again for descending. The cell and column menus have Sort Ascending and Sort Descending. With VoiceOver, press a header (VO+Space; reach headers with VO+Shift+|).
 
-Sorting is **stable**: to sort by two columns, sort by the secondary column first, then the primary. A sort is one-off: later edits and inserts never move rows, and the header arrow disappears once the order is disturbed.
+To sort by two columns, sort by the secondary column first, then the primary. A sort is one-off: later edits and inserts never move rows, and the header arrow disappears once the order is disturbed.
 
-## For the model: the data never moves
+## RowOrder mapping
 
 The Grid computes the sorted order and passes it to `reorderRows`. The model stores it, usually as a `RowOrder` (view row to stored row), so data never moves.
 

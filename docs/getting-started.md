@@ -4,15 +4,11 @@ nav_order: 2
 ---
 
 # Getting started
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 ## Requirements
 
 - JUCE 8, with the `juce_gui_basics` module.
-- A C++23 compiler for code that uses the module: recent Clang or Apple Clang, GCC 14, or Visual Studio 2022.
+- C++23.
 - Windows, macOS or Linux.
 
 ## Add the module
@@ -25,10 +21,8 @@ juce_add_module(path/to/juce-grid/modules/jgrid)
 target_link_libraries(MyApp
     PRIVATE
         jgrid
-        juce::juce_gui_basics)
+)
 ```
-
-Only the CMake route is tested; the Projucer should also accept `modules/jgrid`.
 
 Include the header:
 
@@ -36,7 +30,7 @@ Include the header:
 #include <jgrid/jgrid.h>
 ```
 
-## Your first Grid
+## Making a Grid
 
 A Grid needs `rowCount`, `colCount` and `getValue`. `colName` is optional and sets the header titles.
 
@@ -61,8 +55,3 @@ Add `setValue` to make cells editable. Add a `GridModelNotifier` so the Grid hea
 
 ![An edit rejected by validation: the editor stays open and a popup shows the model's message]({{ "/images/editing.png" | relative_url }})
 
-## Next
-
-- [How the pieces fit]({{ "/concepts" | relative_url }})
-- [The model]({{ "/model" | relative_url }})
-- `demo/` in the repository: a complete application with editing, sorting, two views, row operations and undo.

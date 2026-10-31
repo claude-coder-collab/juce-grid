@@ -1,17 +1,13 @@
 ---
-title: How the pieces fit
+title: Responsibilities
 nav_order: 3
 ---
 
-# How the pieces fit
-{: .no_toc }
+# Responsibilities
 
-1. TOC
-{:toc}
+## Data, GridModel, Grid
 
-## The three parts
-
-![Your data, the GridModel callbacks and the Grid, with change notifications flowing back to the Grid]({{ "/images/architecture.svg" | relative_url }})
+![Data, the GridModel callbacks and the Grid, with change notifications flowing back to the Grid]({{ "/images/architecture.svg" | relative_url }})
 
 - **Your data** stays where it is. The Grid never copies or owns it.
 - **`GridModel`**: a struct of `std::function` callbacks that read and write your data. Set the ones your data supports.

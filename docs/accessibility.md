@@ -4,14 +4,10 @@ nav_order: 12
 ---
 
 # Accessibility
-{: .no_toc }
 
-1. TOC
-{:toc}
+The Grid is exposed as a table through JUCE's accessibility layer.
 
-The Grid is exposed as a table through JUCE's accessibility layer. Tested with VoiceOver on macOS only.
-
-## What screen readers get
+## What screen readers see
 
 - A **table** with rows, cells and column headers. Only visible rows and columns are exposed, in the order the Grid shows them.
 - Each **cell** reads its text ("Vocal, cell, 3 of 8"), and is reported as selected when it is in the selection. Empty cells read as empty.
@@ -20,6 +16,12 @@ The Grid is exposed as a table through JUCE's accessibility layer. Tested with V
 - **Column headers** have the sort state in their title ("Track, sorted ascending"); press sorts and show menu opens the column menu.
 - **Announcements** for validation errors, selections ("12 cells selected"), copy, cut, paste, delete, sorts and row operations.
 - Focus follows the cursor; the editor takes focus while open and hands it back when it closes.
+
+## Tips to improve accessibility
+
+- Give the Grid a title: `grid.setTitle("Session tracks")`.
+- Give columns names with `colName`; they become the header titles.
+- Write validation messages that make sense when heard on their own.
 
 ## VoiceOver tips
 
@@ -32,9 +34,4 @@ The Grid is exposed as a table through JUCE's accessibility layer. Tested with V
 | VO+Shift+\| | Move to the column headers. |
 | Ctrl+Tab | Leave the Grid. |
 
-## Your part
 
-- Give the Grid a title: `grid.setTitle("Session tracks")`.
-- Give columns names with `colName`; they become the header titles.
-- Write validation messages that make sense when heard on their own.
-- If you change colours, keep enough contrast.

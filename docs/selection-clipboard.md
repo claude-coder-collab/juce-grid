@@ -4,14 +4,10 @@ nav_order: 9
 ---
 
 # Selection and clipboard
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 ## Cursor and selection
 
-As in Excel, there is one **cursor** cell (heavy outline) that the keyboard acts on, and a **selection** of one or more rectangular ranges.
+There is one **cursor** cell (heavy outline) that the keyboard acts on, and a **selection** of one or more rectangular ranges.
 
 ![A range selection marked as cut, with the dashed cut outline]({{ "/images/selection.png" | relative_url }})
 
