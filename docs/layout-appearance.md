@@ -4,10 +4,6 @@ nav_order: 10
 ---
 
 # Layout and appearance
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 ## Sizes and hiding
 

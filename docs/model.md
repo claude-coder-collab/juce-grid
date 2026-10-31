@@ -4,13 +4,9 @@ nav_order: 4
 ---
 
 # The model
-{: .no_toc }
 
 A `GridModel` is a struct of `std::function` members. Set what your data supports. An empty callback disables the matching feature.
 {: .fs-5 .fw-300 }
-
-1. TOC
-{:toc}
 
 ## Callbacks
 

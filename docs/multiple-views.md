@@ -4,10 +4,6 @@ nav_order: 8
 ---
 
 # Several views of one dataset
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 Several Grids can show the same data. Each has its own cursor, selection, sizes and hidden rows. Edits appear in all of them.
 {: .fs-5 .fw-300 }

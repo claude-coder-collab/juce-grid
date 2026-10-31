@@ -4,10 +4,6 @@ nav_order: 5
 ---
 
 # Editing and validation
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 ## Opening an editor
 

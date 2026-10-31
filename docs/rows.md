@@ -4,10 +4,6 @@ nav_order: 7
 ---
 
 # Rows, undo and batches
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 ## Row operations
 
@@ -27,7 +23,7 @@ Copied rows are tab-separated text with every column, so rows can come from a sp
 
 Delete Rows and Cmd/Ctrl+− act on the selected rows, or on the cursor's row if no whole rows are selected. Cmd/Ctrl+= inserts as many blank rows as are selected, below them, or one below the cursor.
 
-## Undo is the model's
+## Undo
 
 The Grid keeps no undo history. Cmd/Ctrl+Z, Shift+Cmd/Ctrl+Z and Cmd/Ctrl+Y call the model's `undo` and `redo`. Open cell editors have their own undo.
 
