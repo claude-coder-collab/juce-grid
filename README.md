@@ -2,18 +2,21 @@
 
 **[Guide and API reference](https://claude-coder-collab.github.io/juce-grid/)**
 
-A spreadsheet-style grid component for [JUCE 8](https://juce.com): a keyboard-first, accessible replacement for `TableListBox` that you bind to your own data through a small set of callbacks.
+Spreadsheet-style grid component for [JUCE 8](https://juce.com), replacing `TableListBox`. You bind it to your data with a `GridModel`, a struct of callbacks.
 
 ## Features
 
-- Bind any data with a `GridModel` struct of `std::function`s: no base class, and the Grid is not a template.
-- Excel-style cursor and range selection, with the full keyboard: arrows, Page, Home/End, Tab/Enter, Shift to extend, Ctrl/Cmd+A, Ctrl+Tab to leave.
-- In-cell text editing (F2, double-click or just type, including dead keys and input methods), with undo/redo in the editor and model-side validation shown in a non-modal popup.
-- Copy, cut, paste and delete as tab-separated text that works with Excel, Numbers and Google Sheets; whole-row cut, copy, insert, duplicate and delete.
-- Sorting through header sort buttons, kept in the model's own row order; several Grids can view one dataset with independent orders and column subsets (`DataSource` + `ViewModel`).
-- Resizable, auto-fitting and hideable rows and columns; context menus the model can extend; Grid-level undo/redo forwarded to the model.
+- Cursor and range selection, full keyboard navigation.
+- In-cell editing with model-side validation.
+- Copy, cut, paste and delete as tab-separated text (Excel, Numbers, Google Sheets compatible).
+- Whole-row cut, copy, insert, duplicate and delete.
+- Sorting that leaves your data in place.
+- Several Grids on one dataset, each with its own sort order and columns (`DataSource` + `ViewModel`).
+- Resizable, auto-fitting and hideable rows and columns.
+- Context menus the model can extend.
+- Undo and redo forwarded to the model.
 - Screen reader support through JUCE's accessibility layer (tested with VoiceOver).
-- Colours customisable per Grid, per parent or per LookAndFeel.
+- Colours set per Grid, per parent or per LookAndFeel.
 
 ## Using it
 
@@ -24,7 +27,7 @@ juce_add_module(path/to/juce-grid/modules/jgrid)
 target_link_libraries(MyApp PRIVATE jgrid juce::juce_gui_basics)
 ```
 
-Then bind a model:
+Bind a model:
 
 ```cpp
 #include <jgrid/jgrid.h>
@@ -48,11 +51,11 @@ jgrid::Grid grid;
 grid.setModel(model);
 ```
 
-Everything else (validation, sorting, row operations, undo, menus) is optional. The [guide](https://claude-coder-collab.github.io/juce-grid/) explains each part, `docs/examples/` has small complete examples, and `demo/` is a full application. `SPEC.md` is the design specification.
+All other callbacks are optional. See the [guide](https://claude-coder-collab.github.io/juce-grid/), the examples in `docs/examples/`, and the demo application in `demo/`. `SPEC.md` is the design specification.
 
 ## Building the demo and tests
 
-Requirements: CMake 3.28+, Ninja, and a C++26 compiler (GCC 14, a recent Clang or Apple Clang, or Visual Studio 2022). JUCE 8 and Catch2 are fetched automatically. On Linux, JUCE needs the usual X11, FreeType and Fontconfig development packages; see `.github/workflows/ci.yml` for the list. Projects using the module need C++23.
+Requires CMake 3.28+, Ninja and a C++26 compiler (GCC 14, recent Clang or Apple Clang, Visual Studio 2022). JUCE 8 and Catch2 are fetched automatically. On Linux, install the X11, FreeType and Fontconfig development packages (list in `.github/workflows/ci.yml`). Code using the module needs C++23.
 
 ```sh
 cmake --preset dev
@@ -60,14 +63,12 @@ cmake --build --preset dev
 ctest --preset dev
 ```
 
-`tools/check.py` runs the full local check: formatting, the dev build and tests, AddressSanitizer/UndefinedBehaviorSanitizer, ThreadSanitizer and clang-tidy.
+`tools/check.py` runs formatting, the dev build and tests, ASan/UBSan, TSan and clang-tidy.
 
 ## Platforms
 
-The Grid targets Windows, macOS and Linux. It is developed on macOS; Windows and Linux are built and tested in CI.
+Windows, macOS and Linux. Developed on macOS; Windows and Linux are built and tested in CI.
 
 ## Licence
 
-JUCE Grid is released under the [MIT licence](LICENSE).
-
-It depends on JUCE, which is dual-licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) and the commercial [JUCE licence](https://juce.com/legal/juce-8-licence/). JUCE is not included in this repository, but any application you build with JUCE Grid also uses JUCE and must comply with one of JUCE's licences.
+[MIT](LICENSE). JUCE is not included, and applications using JUCE Grid must comply with one of JUCE's licences: [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) or the commercial [JUCE licence](https://juce.com/legal/juce-8-licence/).

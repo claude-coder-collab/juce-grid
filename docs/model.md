@@ -6,7 +6,7 @@ nav_order: 4
 # The model
 {: .no_toc }
 
-A `GridModel` is a struct of `std::function` members. Fill in what your data supports; leave the rest empty. Leaving a callback out never breaks anything: it switches off the matching feature.
+A `GridModel` is a struct of `std::function` members. Set what your data supports. An empty callback disables the matching feature.
 {: .fs-5 .fw-300 }
 
 1. TOC
@@ -83,8 +83,8 @@ After you change your data, call `notifier.changed(...)` with the most specific 
 | `Reset{}` | Anything else, including column changes, loading a file, or an undo that replaced everything. | Re-queries everything; cancels any editor; forgets row heights, hidden rows and the selection. |
 
 {: .note }
-If your model has no notifier, the Grid still applies its **own** edits, pastes, sorts and row operations to itself. You only need `grid.refresh()` for changes that come from elsewhere.
+Without a notifier, the Grid still updates for its own edits, pastes, sorts and row operations. Call `grid.refresh()` for changes from elsewhere.
 
 ## A complete model
 
-The [`demo/DemoModel.cpp`](https://github.com/claude-coder-collab/juce-grid/blob/main/demo/DemoModel.cpp) in the repository implements every callback: per-column validation and conversion, read-only IDs, row insertion and removal, snapshot undo and redo, and batches.
+[`demo/DemoModel.cpp`](https://github.com/claude-coder-collab/juce-grid/blob/main/demo/DemoModel.cpp) implements every callback.

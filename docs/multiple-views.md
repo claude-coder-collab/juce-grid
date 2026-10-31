@@ -9,16 +9,16 @@ nav_order: 8
 1. TOC
 {:toc}
 
-Several Grids can show the same data. Each keeps its own cursor, selection, sizes and hidden rows; an edit in one shows up in all of them.
+Several Grids can show the same data. Each has its own cursor, selection, sizes and hidden rows. Edits appear in all of them.
 {: .fs-5 .fw-300 }
 
 ## Sharing one model
 
-The simplest case: bind the same `GridModel` to two Grids. Both subscribe to its notifier, so they stay in step. They also share the model's row order, so sorting one sorts both.
+Bind the same `GridModel` to two Grids. Both follow its notifier and share its row order, so sorting one sorts both.
 
 ## Independent views: DataSource and ViewModel
 
-To give each Grid its **own** sort order or its **own columns**, describe your data once as a `DataSource`, in storage terms, and give each Grid a `ViewModel`:
+For a separate sort order or column set per Grid, describe the data once as a `DataSource` (storage terms) and give each Grid a `ViewModel`:
 
 ![One DataSource feeding two ViewModels, each feeding its own Grid]({{ "/images/multiple-views.svg" | relative_url }})
 

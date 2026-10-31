@@ -9,7 +9,7 @@ nav_order: 12
 1. TOC
 {:toc}
 
-The Grid exposes itself to screen readers as a table through JUCE's accessibility layer: no platform code of its own. It has been tested with VoiceOver on macOS; Windows and Linux screen readers have not been tested yet.
+The Grid is exposed as a table through JUCE's accessibility layer. Tested with VoiceOver on macOS only.
 
 ## What screen readers get
 
@@ -37,4 +37,4 @@ The Grid exposes itself to screen readers as a table through JUCE's accessibilit
 - Give the Grid a title: `grid.setTitle("Session tracks")`.
 - Give columns names with `colName`; they become the header titles.
 - Write validation messages that make sense when heard on their own.
-- If you change colours, keep enough contrast: the colour IDs make high-contrast schemes easy.
+- If you change colours, keep enough contrast.

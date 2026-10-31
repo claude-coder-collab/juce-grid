@@ -23,21 +23,21 @@ Select whole rows by clicking (or dragging over) the row headers, then use the r
 | Delete | Delete Rows | Cmd/Ctrl+− | `removeRows` |
 | Hide / show | Hide Rows, Show Hidden Rows | | |
 
-Copied rows travel as tab-separated text, every column included, so you can paste rows from a spreadsheet too: each row is padded or truncated to the Grid's column count. **Cut rows are removed only when they are inserted somewhere**, in the same Grid or another; a cut that is never pasted loses nothing. Inserted rows end up selected.
+Copied rows are tab-separated text with every column, so rows can come from a spreadsheet; each is padded or truncated to the Grid's column count. **Cut rows are removed only when inserted elsewhere**, in this Grid or another. Inserted rows end up selected.
 
 Delete Rows and Cmd/Ctrl+− act on the selected rows, or on the cursor's row if no whole rows are selected. Cmd/Ctrl+= inserts as many blank rows as are selected, below them, or one below the cursor.
 
 ## Undo is the model's
 
-The Grid has no undo history. Cmd/Ctrl+Z, Shift+Cmd/Ctrl+Z and Cmd/Ctrl+Y call the model's `undo` and `redo`, and the model decides what they mean. (Cell editors have their own undo while they are open.)
+The Grid keeps no undo history. Cmd/Ctrl+Z, Shift+Cmd/Ctrl+Z and Cmd/Ctrl+Y call the model's `undo` and `redo`. Open cell editors have their own undo.
 
-`beginBatch` and `endBatch` tell the model where one user action starts and ends, so a paste of 50 cells or a cut-and-paste of rows can be one undo step:
+`beginBatch` and `endBatch` bracket one user action, so a multi-cell paste or a row cut-and-paste can be one undo step:
 
 ```cpp
 {% include_relative examples/04_RowsAndUndo.cpp %}
 ```
 
-This example remembers a snapshot before each change, or once per batch, and restores it on undo, notifying `Reset`. A larger model would record commands instead, for example with a `juce::UndoManager`.
+This example snapshots before each change (once per batch) and restores on undo, notifying `Reset`. Larger models can record commands, e.g. with a `juce::UndoManager`.
 
 ## From code
 

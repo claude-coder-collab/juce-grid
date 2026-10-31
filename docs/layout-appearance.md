@@ -20,7 +20,7 @@ nav_order: 10
 
 ## Colours
 
-The Grid takes its look from its parent's LookAndFeel. Set any of these with `setColour()` on the Grid, any parent component, or the LookAndFeel:
+Set these with `setColour()` on the Grid, a parent component or the LookAndFeel:
 
 | Colour ID | Used for | Falls back to |
 |---|---|---|
@@ -36,7 +36,7 @@ The Grid takes its look from its parent's LookAndFeel. Set any of these with `se
 
 ## Context menu items
 
-Your model can add items to any context menu, or change the built-in ones, with `contextMenu`:
+Add or change menu items with `contextMenu`:
 
 ```cpp
 {% include_relative examples/06_MenusAndColours.cpp %}
